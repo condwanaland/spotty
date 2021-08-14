@@ -1,15 +1,3 @@
-#' This function is copied verbatim from the `spotifyr` package by [Charlie Thompson](https://www.rcharlie.com/spotifyr/index.html). It is being used in accordance with its MIT License. All copyright is retained by C Thompson as follows
-#' YEAR: 2017
-#' COPYRIGHT HOLDER: Charlie Thompson
-#' 
-scopes <- function() {
-  xml2::read_html("https://developer.spotify.com/documentation/general/guides/scopes/") %>%
-    rvest::html_elements('code') %>%
-    rvest::html_text() %>%
-    unique()
-}
-
-
 #' Get Spotify Authorization Code
 #'
 #' This function is copied verbatim from the `spotifyr` package by [Charlie Thompson](https://www.rcharlie.com/spotifyr/index.html). It is being used in accordance with its MIT License. All copyright is retained by C Thompson as follows
@@ -38,13 +26,13 @@ scopes <- function() {
 get_spotify_authorization_code <- function(
   client_id = Sys.getenv("SPOTIFY_CLIENT_ID"),
   client_secret = Sys.getenv("SPOTIFY_CLIENT_SECRET"),
-  scope = scopes()
+  scope = get_scopes()
 ) {
   
   endpoint <- oauth_endpoint(authorize = 'https://accounts.spotify.com/authorize',
                              access = 'https://accounts.spotify.com/api/token')
   
-  app <- oauth_app('spotifyr', client_id, client_secret)
+  app <- oauth_app('spotty', client_id, client_secret)
   
   token <- purrr::safely(.f=oauth2.0_token)(
     endpoint = endpoint,
