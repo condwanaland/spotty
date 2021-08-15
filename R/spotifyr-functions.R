@@ -16,7 +16,7 @@
 #' @return The Spotify Web API Token2.0 reference class object (see
 #'  \code{httr::\link[httr]{oauth2.0_token}}), or an error message.
 #' @family authentication functions
-#' @importFrom httr oauth2.0_token oauth_endpoint
+#' @importFrom httr oauth2.0_token oauth_endpoint oauth_app
 #' @importFrom purrr safely
 #' @examples
 #' \donttest{
@@ -34,7 +34,7 @@ get_spotify_authorization_code <- function(
   
   app <- oauth_app('spotty', client_id, client_secret)
   
-  token <- purrr::safely(.f=oauth2.0_token)(
+  token <- safely(.f=oauth2.0_token)(
     endpoint = endpoint,
     app = app,
     scope = scope)
