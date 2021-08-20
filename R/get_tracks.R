@@ -6,7 +6,8 @@ get_saved_tracks <- function(select_key_cols = TRUE,
     stop("If select_key_cols is FALSE, then rename_key_cols must be as well")
   }
   
-  base_url <- 'https://api.spotify.com/v1/me/tracks/'
+  #base_url <- 'https://api.spotify.com/v1/me/tracks/'
+  base_url <- track_url()
   
   total <- extract_total(base_url)
   
