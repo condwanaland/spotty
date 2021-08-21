@@ -26,11 +26,11 @@ get_saved_tracks <- function(select_key_cols = TRUE,
   res <- cbind(res, artists)
   
   if(select_key_cols){
-    res <- select_spotty_cols(res)
+    res <- select_spotty_track_cols(res)
   }
   
   if(rename_key_cols){
-    res <- rename_spotty_cols(res)
+    res <- rename_spotty_track_cols(res)
   }
   
   return(res)
@@ -71,7 +71,7 @@ get_data <- function(api_data){
   return(res)
 }
 
-select_spotty_cols <- function(dat){
+select_spotty_track_cols <- function(dat){
   dat_cols <- dat[, c("track.name",
                       "track.album.name",
                       "name",
@@ -88,7 +88,7 @@ select_spotty_cols <- function(dat){
   return(dat_cols)
 }
 
-rename_spotty_cols <- function(dat){
+rename_spotty_track_cols <- function(dat){
   #TODO: figure out how to mapply this
   dat <- renamer(dat, "track.duration_ms", "track_duration_ms")
   dat <- renamer(dat, "track.id", "track_id")

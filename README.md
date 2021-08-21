@@ -5,10 +5,8 @@
 
 <!-- badges: start -->
 <!-- badges: start -->
-
-[![Codecov test
-coverage](https://codecov.io/gh/condwanaland/spotty/branch/main/graph/badge.svg)](https://codecov.io/gh/condwanaland/spotty?branch=main)
-<!-- badges: end --> <!-- badges: end -->
+<!-- badges: end -->
+<!-- badges: end -->
 
 The goal of spotty is to …
 
