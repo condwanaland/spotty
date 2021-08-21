@@ -1,2 +1,4 @@
 ^spotty\.Rproj$
 ^\.Rproj\.user$
+^codecov\.yml$
+^README\.Rmd$
