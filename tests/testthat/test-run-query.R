@@ -1,4 +1,6 @@
 test_that("run_query tracks is expected shape", {
+  skip_on_cran()
+  skip_if_not(interactive())
   dat <- run_query(track_url(),
                    params = list(
     limit = 50,
@@ -14,6 +16,8 @@ test_that("run_query tracks is expected shape", {
 })
 
 test_that("run_query album is expected shape", {
+  skip_on_cran()
+  skip_if_not(interactive())
   dat <- run_query(album_url(),
                    params = list(
                      limit = 50,

@@ -19,7 +19,7 @@
 #' @importFrom httr oauth2.0_token oauth_endpoint oauth_app
 #' @importFrom purrr safely
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' authorization <- get_spotify_authorization_code()
 #' }
 
