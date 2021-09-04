@@ -1,4 +1,19 @@
+#' get_saved_tracks
+#' 
+#' Creates a dataframe of all of the tracks you have saved (liked)
+#'
+#' @param select_key_cols Boolean. Sets whether to select key columns of interest or alternatively to leave all columns as is. Defaults to TRUE
+#' @param rename_key_cols Boolean. Sets whether to rename the key columns to more user-friendly names. Defaults to TRUE. Cannot be TRUE if `select_key_cols` is FALSE
+#'
+#' @return Dataframe
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' client_id = Sys.setenv("SPOTIFY_CLIENT_ID"),
+#' client_secret = Sys.setenv("SPOTIFY_CLIENT_SECRET")
+#' dat <- get_saved_tracks()
+#' }
 get_saved_tracks <- function(select_key_cols = TRUE,
                              rename_key_cols = TRUE){
   
@@ -6,7 +21,6 @@ get_saved_tracks <- function(select_key_cols = TRUE,
     stop("If select_key_cols is FALSE, then rename_key_cols must be as well")
   }
   
-  #base_url <- 'https://api.spotify.com/v1/me/tracks/'
   base_url <- track_url()
   
   total <- extract_total(base_url)

@@ -5,3 +5,5 @@
 ^\.github$
 .httr-oauth
 tests/testthat/.httr-oauth
+^\.httr-oauth$
+^LICENSE\.md$
