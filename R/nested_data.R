@@ -2,6 +2,12 @@ extract_nested_data <- function(dat){
   UseMethod("extract_nested_data")
 }
 
+extract_nested_data.default <- function(dat){
+  warning(paste("extract_nested_data does not know how to handle object of class ", 
+                class(x)))
+  return(dat)
+}
+
 extract_nested_data.spotty_track <- function(dat){
   artists <- dat$track.artists
   
