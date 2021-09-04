@@ -40,10 +40,14 @@ get_saved_tracks <- function(select_key_cols = TRUE,
   
   #artists <- get_artist_data(res)
   artists <- extract_nested_data(res)
+
   res <- cbind(res, artists)
+  # Figure out a way to not have to assign the class again here. cbind strips the custom class.
+  class(res) <- append("spotty_track", class(res))
+  #print(class(res))
   
   if(select_key_cols){
-    res <- select_spotty_track_cols(res)
+    res <- select_cols(res)
   }
   
   if(rename_key_cols){
@@ -88,23 +92,6 @@ list_to_dataframe <- function(api_data){
   return(res)
 }
 
-select_spotty_track_cols <- function(dat){
-  dat_cols <- dat[, c("track.name",
-                      "track.album.name",
-                      "name",
-                      "added_at",
-                      "track.duration_ms",
-                      "track.popularity",
-                      "track.album.release_date",
-                      "track.album.total_tracks",
-                      "track.id",
-                      "track.album.id",
-                      "id"
-  )]
-  
-  return(dat_cols)
-}
-
 rename_spotty_track_cols <- function(dat){
   #TODO: figure out how to mapply this
   dat <- renamer(dat, "track.duration_ms", "track_duration_ms")
@@ -117,11 +104,4 @@ rename_spotty_track_cols <- function(dat){
   dat <- renamer(dat, "track.album.total_tracks", "album_total_tracks")
   dat <- renamer(dat, "id", "artist_id")
   dat <- renamer(dat, "name", "artist_name")
-}
-
-
-
-renamer <- function(dat, from, to){
-  names(dat)[names(dat) == from] <- to
-  return(dat)
 }

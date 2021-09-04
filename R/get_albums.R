@@ -39,10 +39,13 @@ get_saved_albums <- function(select_key_cols = TRUE,
   class(res) <- append("spotty_album", class(res))
   
   res_album <- extract_nested_data(res)
+  
   res <- cbind(res, res_album)
+  # Figure out a way to not have to assign the class again here. cbind strips the custom class.
+  class(res) <- append("spotty_album", class(res))
   
   if (select_key_cols){
-    res <- select_spotty_album_cols(res)
+    res <- select_cols(res)
   }
   
   if(rename_key_cols){
@@ -53,22 +56,22 @@ get_saved_albums <- function(select_key_cols = TRUE,
   
 }
 
-select_spotty_album_cols <- function(dat){
-  dat_cols <- dat[, c("album.name",
-                      "name", #artist name
-                      "added_at",
-                      "album.popularity",
-                      "album.release_date",
-                      "album.release_date_precision",
-                      "album.total_tracks",
-                      "album.label",
-                      "album.id",
-                      "id", #artist id
-                      "album.album_type"
-  )]
-  
-  return(dat_cols)
-}
+# select_spotty_album_cols <- function(dat){
+#   dat_cols <- dat[, c("album.name",
+#                       "name", #artist name
+#                       "added_at",
+#                       "album.popularity",
+#                       "album.release_date",
+#                       "album.release_date_precision",
+#                       "album.total_tracks",
+#                       "album.label",
+#                       "album.id",
+#                       "id", #artist id
+#                       "album.album_type"
+#   )]
+#   
+#   return(dat_cols)
+# }
 
 rename_spotty_album_cols <- function(dat){
   #TODO: figure out how to mapply this
