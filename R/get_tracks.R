@@ -35,7 +35,7 @@ get_saved_tracks <- function(select_key_cols = TRUE,
   })
   
   
-  res <- get_data(res)
+  res <- list_to_dataframe(res)
   artists <- get_artist_data(res)
   res <- cbind(res, artists)
   
@@ -75,7 +75,7 @@ extract_total <- function(base_url){
   return(total)
 }
 
-get_data <- function(api_data){
+list_to_dataframe <- function(api_data){
   res <- lapply(api_data, function(x){
     as.data.frame(x$items)
   })

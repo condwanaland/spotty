@@ -35,7 +35,7 @@ get_saved_albums <- function(select_key_cols = TRUE,
   })
   
   
-  res <- get_data(res)
+  res <- list_to_dataframe(res)
   res_album <- get_album_data(res)
   
   res <- cbind(res, res_album)
