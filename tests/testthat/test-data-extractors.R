@@ -140,9 +140,10 @@ dat_artist <- structure(list(href = "https://api.spotify.com/v1/artists/0iidQFem
                                                                                                                                                                              -1L), class = "data.frame")
 
 test_that("get_data extracts correctly", {
-  expect_equal(get_data(pre_cleaned), post_cleaned)
+  expect_equal(list_to_dataframe(pre_cleaned), post_cleaned)
 })
 
+#TODO, don't explicitely call the method here - add the class properly
 test_that("get_artist_data extracts correctly", {
-  expect_equal(get_artist_data(post_cleaned), dat_artist)
+  expect_equal(extract_nested_data.spotty_track(post_cleaned), dat_artist)
 })

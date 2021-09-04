@@ -36,7 +36,10 @@ get_saved_tracks <- function(select_key_cols = TRUE,
   
   
   res <- list_to_dataframe(res)
-  artists <- get_artist_data(res)
+  class(res) <- append("spotty_track", class(res))
+  
+  #artists <- get_artist_data(res)
+  artists <- extract_nested_data(res)
   res <- cbind(res, artists)
   
   if(select_key_cols){
@@ -122,16 +125,3 @@ renamer <- function(dat, from, to){
   names(dat)[names(dat) == from] <- to
   return(dat)
 }
-
-get_artist_data <- function(bound_data){
-  artists <- bound_data$track.artists
-  
-  artists_reduced <- lapply(artists, function(x){
-    x[1,]
-  })
-  
-  bound_artists <- do.call(rbind, artists_reduced)
-  
-  return(bound_artists)
-}
-

@@ -36,8 +36,9 @@ get_saved_albums <- function(select_key_cols = TRUE,
   
   
   res <- list_to_dataframe(res)
-  res_album <- get_album_data(res)
+  class(res) <- append("spotty_album", class(res))
   
+  res_album <- extract_nested_data(res)
   res <- cbind(res, res_album)
   
   if (select_key_cols){
@@ -50,15 +51,6 @@ get_saved_albums <- function(select_key_cols = TRUE,
   
   return(res)
   
-}
-
-get_album_data <- function(res){
-  res_artists <- res$album.artists
-  
-  res <- lapply(res_artists, function(x){
-    dat <- x[1, ]
-  })
-  res <- do.call(rbind, res)
 }
 
 select_spotty_album_cols <- function(dat){
