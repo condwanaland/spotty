@@ -56,23 +56,6 @@ get_saved_albums <- function(select_key_cols = TRUE,
   
 }
 
-# select_spotty_album_cols <- function(dat){
-#   dat_cols <- dat[, c("album.name",
-#                       "name", #artist name
-#                       "added_at",
-#                       "album.popularity",
-#                       "album.release_date",
-#                       "album.release_date_precision",
-#                       "album.total_tracks",
-#                       "album.label",
-#                       "album.id",
-#                       "id", #artist id
-#                       "album.album_type"
-#   )]
-#   
-#   return(dat_cols)
-# }
-
 rename_spotty_album_cols <- function(dat){
   #TODO: figure out how to mapply this
   dat <- renamer(dat, "album.name", "album_name")

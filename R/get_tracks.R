@@ -38,13 +38,11 @@ get_saved_tracks <- function(select_key_cols = TRUE,
   res <- list_to_dataframe(res)
   class(res) <- append("spotty_track", class(res))
   
-  #artists <- get_artist_data(res)
   artists <- extract_nested_data(res)
 
   res <- cbind(res, artists)
   # Figure out a way to not have to assign the class again here. cbind strips the custom class.
   class(res) <- append("spotty_track", class(res))
-  #print(class(res))
   
   if(select_key_cols){
     res <- select_cols(res)
