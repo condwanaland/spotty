@@ -49,7 +49,7 @@ get_saved_albums <- function(select_key_cols = TRUE,
   }
   
   if(rename_key_cols){
-    res <- rename_spotty_album_cols(res)
+    res <- rename_cols(res)
   }
   
   return(res)

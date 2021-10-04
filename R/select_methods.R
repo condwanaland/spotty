@@ -4,7 +4,7 @@ select_cols <- function(dat){
 
 select_cols.default <- function(dat){
   warning(paste("select_cols does not know how to handle object of class ", 
-                class(x)))
+                class(dat)))
   return(dat)
 }
 

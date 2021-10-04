@@ -49,7 +49,7 @@ get_saved_tracks <- function(select_key_cols = TRUE,
   }
   
   if(rename_key_cols){
-    res <- rename_spotty_track_cols(res)
+    res <- rename_cols(res)
   }
   
   return(res)
