@@ -4,7 +4,7 @@ extract_nested_data <- function(dat){
 
 extract_nested_data.default <- function(dat){
   warning(paste("extract_nested_data does not know how to handle object of class ", 
-                class(x)))
+                class(dat)))
   return(dat)
 }
 
